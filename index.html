@@ -53,8 +53,7 @@
         <!-- GRIGLIA CON BOOTSTRAP -->
         <div class="container">
             <div class="row align-items-start">
-                <!-- COLONNA DEL FORM, la validazione input è affidata al browser, 
-                ad eccezione della checkbok per la privacy, dove è affidata a Javascript -->
+                <!-- COLONNA DEL FORM, la validazione input è affidata al browser -->
                 <div class="col-12 col-lg-9 mt-4 mb-5">
                     <h1>Richiesta Preventivo</h1>
                     <p class="fw-medium">Compila il form per richiedere un preventivo per i nostri servizi di sviluppo
@@ -94,9 +93,17 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="mt-5 ps-5">
-                            <button type="submit" class="btn btn-primary">Calcola Preventivo
+                        <div class="container mt-5 ps-5 d-flex justify-content-between" style="height: 60px">
+                            <button type="submit" class="btn btn-primary my-3" style="height: 40px">Calcola
+                                Preventivo
                             </button>
+                            <!-- elemento del saldo finale, nascosto di default -->
+                            <div class="d-none pe-5 me-5">
+                                <p class="fw-bold fs-4 m-0">Prezzo finale</p>
+                                <p class="text-center"><span id="int" class="fw-bold fs-4">€10</span><span id="decimal"
+                                        class="fs-5">,00</span>
+                            </div>
+                            <!-- elemento del saldo finale, nascosto di default -->
                         </div>
                     </form>
                 </div>
