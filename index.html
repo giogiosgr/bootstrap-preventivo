@@ -75,9 +75,9 @@
                             <label for="select" class="form-label">Tipo di lavoro</label>
                             <select id="select" class="form-select" aria-label="Default select example" required>
                                 <option selected value="">Seleziona il tipo di lavoro</option>
-                                <option value="1">Backed Development</option>
-                                <option value="2">Frontend Development</option>
-                                <option value="3">Project Analysis</option>
+                                <option value="frontend">Backed Development</option>
+                                <option value="backend">Frontend Development</option>
+                                <option value="analysis">Project Analysis</option>
                             </select>
                         </div>
                         <div class="mb-3">
@@ -88,8 +88,7 @@
                         <div class="mb-3">
                             <label for="code" class="form-label">Codice promozionale (opzionale)</label>
                             <input id="code" type="text" class="form-control">
-                            <div class="form-text text-danger d-none" id="basic-addon4">Il codice promozionale inserito
-                                non è valido!</div>
+                            <div id="warning" class="form-text text-danger d-none">Codice promozionale non valido</div>
                         </div>
                         <div class="mb-3">
                             <div class="form-check">
@@ -104,7 +103,7 @@
                                 Preventivo
                             </button>
                             <!-- elemento del saldo finale, nascosto di default -->
-                            <div class="d-none pe-5 me-5">
+                            <div id="price" class="d-none pe-5 me-5">
                                 <p class="fw-bold fs-4 m-0">Prezzo finale</p>
                                 <p class="text-center"><span id="int" class="fw-bold fs-4">€10</span><span id="decimal"
                                         class="fs-5">,00</span>
