@@ -115,15 +115,20 @@
                                 <!-- testo di errore sulla checkbox privacy -->
                             </div>
                         </div>
-                        <div class="container mt-4 ps-5 d-flex justify-content-between" style="height: 60px">
-                            <button id="submit" type="submit" class="btn btn-primary my-3" style="height: 40px">Calcola
-                                Preventivo
-                            </button>
+                        <div class="row mb-5" style="height: 60px">
+                            <div class="col-12 col-lg-6 ms-5">
+                                <button id="submit" type="submit" class="btn btn-primary my-3"
+                                    style="height: 40px">Calcola
+                                    Preventivo
+                                </button>
+                            </div>
                             <!-- elemento del saldo finale, nascosto di default -->
-                            <div id="price" class="d-none pe-5 me-5">
-                                <p class="fw-bold fs-4 m-0">Prezzo finale</p>
-                                <p class="text-center"><span id="int" class="fw-bold fs-4">€10</span><span id="decimal"
-                                        class="fs-5">,00</span>
+                            <div id="price" class="col-12 col-lg-4 ms-5 ps-4 d-none">
+                                <div>
+                                    <p class="fw-bold fs-4 m-0">Prezzo finale<br></p>
+                                    <p class="ms-4"><span id="int" class="fw-bold fs-4"></span><span id="decimal"
+                                            class="fs-5"></span></p>
+                                </div>
                             </div>
                             <!-- elemento del saldo finale -->
                         </div>
