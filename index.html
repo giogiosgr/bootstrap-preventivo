@@ -61,11 +61,13 @@
         <!-- GRIGLIA CON BOOTSTRAP -->
         <div class="container">
             <div class="row align-items-start">
-                <!-- COLONNA DEL FORM, la validazione input è affidata al browser -->
+                <!-- COLONNA DEL FORM -->
                 <div class="col-12 col-lg-9 mt-4 mb-5">
                     <h1>Richiesta Preventivo</h1>
                     <p class="fw-medium">Compila il form per richiedere un preventivo per i nostri servizi di sviluppo
                     </p>
+                    <!-- NOTA: la validazione del form è affidata al browser -->
+                    <!-- ad eccezione della checkbox della privacy, affidata a Javascript -->
                     <form>
                         <div class=" mb-3">
                             <label for="firstName" class="form-label fw-medium">Nome</label>
@@ -96,15 +98,20 @@
                             <label for="code" class="form-label fw-medium">Codice promozionale (opzionale)</label>
                             <input id="code" type="text" class="form-control">
                             <!-- testo di errore sul codice promozionale, nascosto di default -->
-                            <div id="warning" class="form-text text-danger d-none">Codice promozionale non valido</div>
+                            <div id="warningCode" class="form-text text-danger d-none">Codice promozionale non valido
+                            </div>
                             <!-- testo di errore sul codice promozionale -->
                         </div>
                         <div class="mb-3">
                             <div class="form-check">
-                                <input id="checkbox" class="form-check-input" type="checkbox" name="digital" required>
+                                <input id="checkbox" class="form-check-input" type="checkbox" name="digital">
                                 <label for="checkbox" class="form-check-label fw-medium">
                                     Accetto la Privacy Policy
                                 </label>
+                                <!-- testo di errore sulla checkbox privacy, nascosto di default -->
+                                <div id="warningCheck" class="form-text text-danger d-none">Devi accettare le condizioni
+                                    della privacy per proseguire</div>
+                                <!-- testo di errore sulla checkbox privacy -->
                             </div>
                         </div>
                         <div class="container mt-4 ps-5 d-flex justify-content-between" style="height: 60px">

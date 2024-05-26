@@ -4,10 +4,13 @@
 const form = document.querySelector('form');
 const selectInput = document.getElementById('select');
 const codeInput = document.getElementById('code');
-const warningText = document.getElementById('warning');
+const warningCodeText = document.getElementById('warningCode');
 const priceText = document.getElementById('price');
 const intSpan = document.getElementById('int');
 const decimalSpan = document.getElementById('decimal');
+const checkElement = document.getElementById('checkbox');
+const buttonInput = document.getElementById('submit');
+const warningCheckText = document.getElementById('warningCheck');
 
 //dichiarazione array con i possibili codici sconto
 const codes = ["YHDNU32", "JANJC63", "PWKCN25", "SJDPO96", "POCIE24"];
@@ -23,6 +26,80 @@ let currentHourPrice = 0;
 let fullPrice = 0;
 let intPrice = 0;
 let decimalPrice = 0;
+
+//dichiarazione oggetto con i lavori possibili e relativi prezzi
+const jobsObj = {
+    "Sviluppo Backend": 20.50,
+    "Sviluppo Frontend": 15.30,
+    "Analisi Progettuale": 33.60
+};
+
+//viene richiamata la funzione per il popolamento, passando l'oggetto con i lavori
+addOptions(jobsObj);
+
+//aggiunta evento al submit del form con funzione che richiamerà il prezzo del calcolo
+form.addEventListener("submit", function (event) {
+    //annullamento del comportamento di default del form al submit
+    event.preventDefault();
+
+    //reset dell'invisibilità dei messaggi di errore, nel caso siano stati resi visibili in precedenza
+    warningCodeText.classList.add("d-none");
+    warningCheckText.classList.add('d-none')
+    //condizione di controllo della casella check della privacy
+    if (checkElement.checked) {
+        //se la property checked è true, allora si richiama la funzione di calcolo
+        calculatePrice();
+    }
+    else {
+        //altrimenti, viene reso visibile il messaggio di errore dedicato nel DOM
+        warningCheckText.classList.remove('d-none')
+    }
+}
+)
+
+//dichiarazione funzione per il calcolo del prezzo finale
+function calculatePrice() {
+    //si estrae il valore corrispondente al lavoro scelto dal select
+    selectedJob = selectInput.value;
+
+    //il valore di selectedJob è la chiave usata per assegnare il valore corrente alla variabile dedicata
+    currentHourPrice = jobsObj[selectedJob];
+
+    //calcolo del prezzo finale
+    fullPrice = currentHourPrice * jobHours;
+
+    //si estrae il valore del codice promozionale inserito, SE inserito
+    usedCode = codeInput.value;
+
+    //condizione di verifica che sia stato effettivamente inserito un codice
+    if (usedCode !== "") {
+        //condizione di verifica che il codice usato sia uno di quello validi
+        if (codes.includes(usedCode)) {
+            //se sì, allora il prezzo finale è scontato del 25%
+            fullPrice -= fullPrice * (discount / 100);
+        }
+        //altrimenti, l'elemento con il messaggio di errore nel DOM viene reso visibile
+        else {
+            warningCodeText.classList.remove("d-none");
+        }
+    }
+
+    //il prezzo viene arrotondato a due cifre decimali
+    fullPrice = fullPrice.toFixed(2);
+
+    //estrazione della parte intera del prezzo
+    intPrice = parseInt(fullPrice);
+
+    //estrazione della parte decimale del prezzo, richiamando la funzione creata
+    decimalPrice = extractDecimal(fullPrice);
+
+    //assegnazione delle parti intera e decimale del prezzo agli elementi dedicati del DOM
+    intSpan.innerText = `€ ${intPrice}`;
+    decimalSpan.innerText = `,${decimalPrice}`;
+
+    //il container del prezzo viene reso visibile
+    priceText.classList.remove('d-none');
+}
 
 //dichiarazione funzione che estrae la parte decimale del prezzo finale
 function extractDecimal(num) {
@@ -44,63 +121,3 @@ function addOptions(obj) {
     //all'elemento select viene aggiunta la stringa con le option, prima del tag di chiusura
     selectInput.insertAdjacentHTML("beforeend", htmlString);
 }
-
-//dichiarazione oggetto con i lavori possibili e relativi prezzi
-const jobsObj = {
-    "Sviluppo Backend": 20.50,
-    "Sviluppo Frontend": 15.30,
-    "Analisi Progettuale": 33.60
-};
-
-//viene richiamata la funzione per il popolamento, passando l'oggetto con i lavori
-addOptions(jobsObj);
-
-//aggiunta evento al submit del form con funzione per il calcolo del prezzo finale
-form.addEventListener("submit", function (event) {
-    //annullamento del comportamento di default del form al submit
-    event.preventDefault();
-
-    //si estrae il valore corrispondente al lavoro scelto dal select
-    selectedJob = selectInput.value;
-
-    //il valore di selectedJob è la chiave usata per assegnare il valore corrente alla variabile dedicata
-    currentHourPrice = jobsObj[selectedJob];
-
-    //calcolo del prezzo finale
-    fullPrice = currentHourPrice * jobHours;
-
-    //si estrae il valore del codice promozionale inserito, SE inserito
-    usedCode = codeInput.value;
-
-    //nel caso il messaggio di errore fosse stato reso visibile in precedenza, viene nascosto nuovamente
-    warningText.classList.add("d-none");
-    //condizione di verifica che sia stato effettivamente inserito un codice
-    if (usedCode !== "") {
-        //condizione di verifica che il codice usato sia uno di quello validi
-        if (codes.includes(usedCode)) {
-            //se sì, allora il prezzo finale è scontato del 25%
-            fullPrice -= fullPrice * (discount / 100);
-        }
-        //altrimenti, l'elemento con il messaggio di errore nel DOM viene reso visibile
-        else {
-            warningText.classList.remove("d-none");
-        }
-    }
-
-    //il prezzo viene arrotondato a due cifre decimali
-    fullPrice = fullPrice.toFixed(2);
-
-    //estrazione della parte intera del prezzo
-    intPrice = parseInt(fullPrice);
-
-    //estrazione della parte decimale del prezzo, richiamando la funzione creata
-    decimalPrice = extractDecimal(fullPrice);
-
-    //assegnazione delle parti intera e decimale del prezzo agli elementi dedicati del DOM
-    intSpan.innerText = `€ ${intPrice}`;
-    decimalSpan.innerText = `,${decimalPrice}`;
-
-    //il container del prezzo viene reso visibile
-    priceText.classList.remove('d-none');
-}
-)
