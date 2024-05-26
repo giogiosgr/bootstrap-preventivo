@@ -60,19 +60,19 @@
                     </p>
                     <form>
                         <div class=" mb-3">
-                            <label for="firstName" class="form-label">Nome</label>
+                            <label for="firstName" class="form-label fw-medium">Nome</label>
                             <input id="firstName" type="text" class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <label for="lastName" class="form-label">Cognome</label>
+                            <label for="lastName" class="form-label fw-medium">Cognome</label>
                             <input id="lastName" type="text" class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
+                            <label for="email" class="form-label fw-medium">Email</label>
                             <input id="email" type="email" class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <label for="select" class="form-label">Tipo di lavoro</label>
+                            <label for="select" class="form-label fw-medium">Tipo di lavoro</label>
                             <select id="select" class="form-select" aria-label="Default select example" required>
                                 <option selected value="">Seleziona il tipo di lavoro</option>
                                 <option value="frontend">Backed Development</option>
@@ -81,14 +81,16 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="notes" class="form-label fw-bold">Note</label>
+                            <label for="notes" class="form-label fw-medium">Note</label>
                             <textarea id="notes" name="notes" class="form-control" aria-label="With textarea"
                                 placeholder="Inserisci una richiesta personale" rows="4"></textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="code" class="form-label">Codice promozionale (opzionale)</label>
+                            <label for="code" class="form-label fw-medium">Codice promozionale (opzionale)</label>
                             <input id="code" type="text" class="form-control">
+                            <!-- testo di errore sul codice promozionale, nascosto di default -->
                             <div id="warning" class="form-text text-danger d-none">Codice promozionale non valido</div>
+                            <!-- testo di errore sul codice promozionale -->
                         </div>
                         <div class="mb-3">
                             <div class="form-check">
@@ -108,7 +110,7 @@
                                 <p class="text-center"><span id="int" class="fw-bold fs-4">€10</span><span id="decimal"
                                         class="fs-5">,00</span>
                             </div>
-                            <!-- elemento del saldo finale, nascosto di default -->
+                            <!-- elemento del saldo finale -->
                         </div>
                     </form>
                 </div>
