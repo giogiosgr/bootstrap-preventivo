@@ -33,11 +33,11 @@ function extractDecimal(num) {
 }
 
 //dichiarazione funzione per il popolamento dell'elemento select del DOM
-function addOptions(arr) {
+function addOptions(obj) {
     //variabile stringa che conterrà il codice HTML man mano aggiunto
     let htmlString = "";
-    //iterazione per ogni elemento dell'array passato come parametro alla funzione
-    arr.forEach(function (elem) {
+    //iterazione per ogni elemento dell'array formato dalle chiavi dell'oggetto, passato come parametro alla funzione
+    Object.keys(obj).forEach(function (elem) {
         //alla stringa codice viene aggiunta una option con classe e testo
         htmlString += `<option value="${elem}">${elem}</option>`;
     })
@@ -45,15 +45,15 @@ function addOptions(arr) {
     selectInput.insertAdjacentHTML("beforeend", htmlString);
 }
 
-//viene richiamata la funzione per il popolamento, passando la lista dei lavori
-addOptions(["Sviluppo Backend", "Sviluppo Frontend", "Analisi Progettuale"]);
-
-//dichiarazione oggetto con i prezzi orari dei lavori possibili
-const prices = {
+//dichiarazione oggetto con i lavori possibili e relativi prezzi
+const jobsObj = {
     "Sviluppo Backend": 20.50,
     "Sviluppo Frontend": 15.30,
     "Analisi Progettuale": 33.60
 };
+
+//viene richiamata la funzione per il popolamento, passando l'oggetto con i lavori
+addOptions(jobsObj);
 
 //aggiunta evento al submit del form con funzione per il calcolo del prezzo finale
 form.addEventListener("submit", function (event) {
@@ -64,7 +64,7 @@ form.addEventListener("submit", function (event) {
     selectedJob = selectInput.value;
 
     //il valore di selectedJob è la chiave usata per assegnare il valore corrente alla variabile dedicata
-    currentHourPrice = prices[selectedJob];
+    currentHourPrice = jobsObj[selectedJob];
 
     //calcolo del prezzo finale
     fullPrice = currentHourPrice * jobHours;
