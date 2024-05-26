@@ -31,6 +31,14 @@ let fullPrice = 0;
 let intPrice = 0;
 let decimalPrice = 0;
 
+//dichiarazione funzione che estrae la parte decimale del prezzo finale
+function extractDecimal(num) {
+    //si considera solo la parte decimale del numero, convertendo il risultato in stringa
+    const decimal = ((num - parseInt(num)).toFixed(2)).toString();
+    //viene restituita solo la parte decimale, dalla parte della stringa posta dopo il punto
+    return decimal.split(".")[1];
+}
+
 //aggiunta evento al submit del form con funzione per il calcolo del prezzo finale
 form.addEventListener("submit", function (event) {
     //annullamento del comportamento di default del form al submit
@@ -52,10 +60,12 @@ form.addEventListener("submit", function (event) {
     if (codes.includes(usedCode)) {
         //se sì, allora il prezzo finale è scontato del 25%
         fullPrice -= fullPrice * (discount / 100);
+        //nel caso il messaggio di errore fosse stato reso visibile in precedenza, viene ora nascosto
+        warningText.classList.add("d-none");
     }
-    //altrimenti, l'elemento con il messaggio di errore nel DOM viene reso visibile
-    else {
-        warningText.classList.remove("d-none")
+    //altrimenti, l'elemento con il messaggio di errore nel DOM viene reso visibile, SE il campo non è vuoto
+    else if (usedCode !== "") {
+        warningText.classList.remove("d-none");
     }
 
     //il prezzo viene arrotondato a due cifre decimali
@@ -64,16 +74,14 @@ form.addEventListener("submit", function (event) {
     //estrazione della parte intera del prezzo
     intPrice = parseInt(fullPrice);
 
-    //estrazione della parte decimale del prezzo (richiamando la funzione dedicata che si è creata)
+    //estrazione della parte decimale del prezzo (richiamando la funzione dedicata)
     decimalPrice = extractDecimal(fullPrice);
 
-    alert(intPrice);
-    alert(decimalPrice);
+    //assegnazione delle parti intera e decimale del prezzo agli elementi dedicati del DOM
+    intSpan.innerText = `€${intPrice}`;
+    decimalSpan.innerText = `,${decimalPrice}`;
+
+    //il container del prezzo viene reso visibile
+    priceText.classList.remove('d-none');
 }
 )
-
-//dichiarazione funzione che estrae la parte decimale del prezzo finale
-function extractDecimal(num) {
-    return ((num - parseInt(num)).toFixed(2) * 100)
-}
-
