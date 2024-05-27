@@ -1,15 +1,25 @@
 'use strict';
 
-//dichiarazione variabili inizializzate con gli oggetti del DOM da manipolare
+/* dichiarazione variabili inizializzate con gli oggetti del DOM da manipolare */
+//form dell'input
 const form = document.querySelector('form');
+//select con le opzioni
 const selectInput = document.getElementById('select');
+//elemento di input del codice sconto
 const codeInput = document.getElementById('code');
+//elemento per il feedback (tramite testo) sull'inserimento del codice sconto
 const warningCodeText = document.getElementById('warningCode');
+//elemento con il testo intero prezzo intero finale
 const priceText = document.getElementById('price');
+//elemento con la parte intera del prezzo finale
 const intSpan = document.getElementById('int');
+//elemento con la parte decimale del prezzo finale
 const decimalSpan = document.getElementById('decimal');
+//elemento con la parte decimale del prezzo finale
 const checkElement = document.getElementById('checkbox');
+//bottone di submit del form
 const buttonInput = document.getElementById('submit');
+//elemento con il testo di errore per la checkbox, nel caso non sia spuntata al momento del submit
 const warningCheckText = document.getElementById('warningCheck');
 
 //dichiarazione array con i possibili codici sconto
@@ -45,14 +55,16 @@ form.addEventListener("submit", function (event) {
     //reset dell'invisibilità dei messaggi di errore, nel caso siano stati resi visibili in precedenza
     warningCodeText.classList.add("d-none");
     warningCheckText.classList.add('d-none');
-    //condizione di controllo della casella check della privacy
+    //condizione di controllo che la property checked della checkbox sia true.
     if (checkElement.checked) {
-        //se la property checked è true, allora si richiama la funzione di calcolo
+        //viene aperto un pop-up per simulare un feedback all'utente sulla generazione del preventivo
+        alert("Sto calcolando un nuovo preventivo");
+        //si richiama la funzione dedicata al calcolo
         calculatePrice();
     }
     else {
         //altrimenti, viene reso visibile il messaggio di errore dedicato nel DOM
-        warningCheckText.classList.remove('d-none')
+        warningCheckText.classList.remove('d-none');
     };
 }
 );
@@ -80,7 +92,7 @@ function calculatePrice() {
             //nell'elemento dedicato si inserisce un messaggio di buon esito in verde
             warningCodeText.classList.remove("text-danger");
             warningCodeText.classList.add("text-success");
-            warningCodeText.innerText = "Il codice inserito ti dà diritto a uno sconto del 25%";
+            warningCodeText.innerText = "Il codice inserito è valido, il prezzo finale è scontato del 25%";
             //quindi l'elemento viene reso visibile
             warningCodeText.classList.remove("d-none");
         }
@@ -88,7 +100,7 @@ function calculatePrice() {
         else {
             warningCodeText.classList.remove("text-success");
             warningCodeText.classList.add("text-danger");
-            warningCodeText.innerText = "Il codice inserito non è valido";
+            warningCodeText.innerText = "Il codice inserito non è valido, il prezzo finale calcolato per intero";
             warningCodeText.classList.remove("d-none");
         };
     };
@@ -119,7 +131,7 @@ function extractDecimal(num, n) {
 function addOptions(obj) {
     //variabile stringa che conterrà il codice HTML man mano aggiunto
     let htmlString = "";
-    //iterazione per ogni elemento dell'array formato dalle chiavi dell'oggetto, passato come parametro alla funzione
+    //iterazione per ogni elemento dell'array, formato dalle chiavi dell'oggetto passato come parametro alla funzione
     Object.keys(obj).forEach(function (elem) {
         //alla stringa codice viene aggiunta una option con classe e testo
         htmlString += `<option value="${elem}">${elem}</option>`;
