@@ -68,8 +68,8 @@ function calculatePrice() {
     //calcolo del prezzo finale
     fullPrice = currentHourPrice * jobHours;
 
-    //si estrae il valore del codice promozionale inserito, SE inserito
-    usedCode = codeInput.value;
+    //si prende il valore del codice promozionale inserito, reso maiuscolo, per confronto case insensitive
+    usedCode = codeInput.value.toUpperCase();
 
     //condizione di verifica che sia stato effettivamente inserito un codice
     if (usedCode !== "") {
