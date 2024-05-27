@@ -34,7 +34,7 @@
                 <div class="container d-flex justify-content-between p-0">
                     <a class="nav-link text-light fs-4 pt-1" aria-current="page" href="#" style="height: 50px;">Bool
                         Factory</a>
-                    <button class=" navbar-toggler" type="button" data-bs-toggle="collapse"
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -58,18 +58,18 @@
         <!-- NAVBAR -->
     </header>
     <main>
-        <!-- GRIGLIA CON BOOTSTRAP -->
         <div class="container">
+            <!-- GRIGLIA CON BOOTSTRAP -->
             <div class="row align-items-start">
                 <!-- COLONNA DEL FORM -->
-                <div class="col-12 col-lg-9 mt-4 mb-5">
+                <div class="col-12 col-lg-9 my-4">
                     <h1>Richiesta Preventivo</h1>
                     <p class="fw-medium">Compila il form per richiedere un preventivo per i nostri servizi di sviluppo
                     </p>
                     <!-- NOTA: la validazione del form è affidata al browser -->
                     <!-- ad eccezione della checkbox della privacy, affidata a Javascript -->
                     <form>
-                        <div class=" mb-3">
+                        <div class="mb-3">
                             <label for="firstName" class="form-label fw-medium">Nome</label>
                             <input id="firstName" type="text" class="form-control" required>
                         </div>
@@ -115,20 +115,17 @@
                                 <!-- testo di errore sulla checkbox privacy -->
                             </div>
                         </div>
-                        <div class="row mb-5" style="height: 60px">
-                            <div class="col-12 col-lg-6 ms-5">
+                        <div class="d-flex flex-wrap justify-content-between" style="column-gap: 200px;">
+                            <div class="mx-5 px-2">
                                 <button id="submit" type="submit" class="btn btn-primary my-3"
-                                    style="height: 40px">Calcola
-                                    Preventivo
+                                    style="height: 40px">Calcola Preventivo
                                 </button>
                             </div>
                             <!-- elemento del saldo finale, nascosto di default -->
-                            <div id="price" class="col-12 col-lg-4 ms-5 ps-4 d-none">
-                                <div>
-                                    <p class="fw-bold fs-4 m-0">Prezzo finale<br></p>
-                                    <p class="ms-4"><span id="int" class="fw-bold fs-4"></span><span id="decimal"
-                                            class="fs-5"></span></p>
-                                </div>
+                            <div id="price" class="mx-5 px-4 d-none">
+                                <p class="fw-bold fs-4 m-0">Prezzo finale</p>
+                                <p class="text-center"><span id="int" class="fw-bold fs-4"></span><span id="decimal"
+                                        class="fs-5"></span></p>
                             </div>
                             <!-- elemento del saldo finale -->
                         </div>
@@ -136,7 +133,7 @@
                 </div>
                 <!-- COLONNA DEL FORM -->
                 <!-- COLONNA DELLE INFO-->
-                <div class="col-12 col-lg-3 mt-4 mb-5">
+                <div class="col-12 col-lg-3 my-4">
                     <div class="card" style="width: 18rem;">
                         <img src="img/dummy_300x200_ffffff_cccccc.png" class="card-img-top" alt="...">
                         <div class="border">
@@ -160,8 +157,8 @@
                 </div>
                 <!-- COLONNA DELLE INFO-->
             </div>
+            <!-- GRIGLIA -->
         </div>
-        <!-- GRIGLIA -->
         <!-- Link allo script di progetto -->
         <script src="JS/main.js"></script>
         <!-- Link allo script di progetto -->
