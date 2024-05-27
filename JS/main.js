@@ -77,9 +77,18 @@ function calculatePrice() {
         if (codes.includes(usedCode)) {
             //se sì, allora il prezzo finale è scontato del 25%
             fullPrice -= fullPrice * (discount / 100);
+            //nell'elemento dedicato si inserisce un messaggio di buon esito in verde
+            warningCodeText.classList.remove("text-danger");
+            warningCodeText.classList.add("text-success");
+            warningCodeText.innerText = "Il codice inserito ti dà diritto a uno sconto del 25%";
+            //quindi l'elemento viene reso visibile
+            warningCodeText.classList.remove("d-none");
         }
-        //altrimenti, l'elemento con il messaggio di errore nel DOM viene reso visibile
+        //altrimenti, viene mostrato un messaggio di errore in rosso
         else {
+            warningCodeText.classList.remove("text-success");
+            warningCodeText.classList.add("text-danger");
+            warningCodeText.innerText = "Il codice inserito non è valido";
             warningCodeText.classList.remove("d-none");
         };
     };
