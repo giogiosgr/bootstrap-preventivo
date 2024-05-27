@@ -100,7 +100,7 @@ function calculatePrice() {
         else {
             warningCodeText.classList.remove("text-success");
             warningCodeText.classList.add("text-danger");
-            warningCodeText.innerText = "Il codice inserito non è valido, il prezzo finale calcolato per intero";
+            warningCodeText.innerText = "Il codice inserito non è valido, il prezzo finale è calcolato per intero";
             warningCodeText.classList.remove("d-none");
         };
     };
