@@ -118,8 +118,8 @@ function calculatePrice() {
     //estrazione della parte intera del prezzo
     intPrice = parseInt(fullPrice);
 
-    //estrazione della parte decimale del prezzo, considerando due cifre, richiamando la funzione dedicata
-    decimalPrice = extractDecimal(fullPrice, 2);
+    //estrazione della parte decimale (arrotondata a due cifre) del prezzo
+    decimalPrice = fullPrice.toFixed(2).split(".")[1];
 
     //assegnazione delle parti intera e decimale del prezzo agli elementi dedicati del DOM
     intSpan.innerText = `€ ${intPrice}`;
@@ -127,14 +127,6 @@ function calculatePrice() {
 
     //il container del prezzo viene reso visibile
     priceText.classList.remove('d-none');
-};
-
-//dichiarazione funzione che estrae la parte decimale del prezzo finale
-function extractDecimal(num, n) {
-    //si considera solo la parte decimale del numero, con n cifre, convertendo il risultato in stringa
-    const decimal = ((num - parseInt(num)).toFixed(n)).toString();
-    //viene restituita solo la parte decimale, dalla parte della stringa posta dopo il punto
-    return decimal.split(".")[1];
 };
 
 //dichiarazione funzione per il popolamento dell'elemento select del DOM
