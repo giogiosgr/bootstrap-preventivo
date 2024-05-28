@@ -52,9 +52,9 @@ form.addEventListener("submit", function (event) {
     //annullamento del comportamento di default del form al submit
     event.preventDefault();
 
-    //reset dell'invisibilità dei messaggi di errore, nel caso siano stati resi visibili in precedenza
+    //reset dell'invisibilità dell'errore del codice, nel caso sia stato reso visibile in precedenza
     warningCodeText.classList.add("d-none");
-    warningCheckText.classList.add('d-none');
+
     //condizione di controllo che la property checked della checkbox sia true.
     if (checkElement.checked) {
         //viene aperto un pop-up per simulare un feedback all'utente sulla generazione del preventivo
@@ -65,9 +65,19 @@ form.addEventListener("submit", function (event) {
     else {
         //altrimenti, viene reso visibile il messaggio di errore dedicato nel DOM
         warningCheckText.classList.remove('d-none');
+        //quindi viene applicato uno stile con boxshadow per contornare in rosso la checkbox stessa
+        checkElement.style.boxShadow = "0px 0px 5px 2px #FF2D00";
     };
 }
 );
+
+//aggiunta evento alla checkbox, con lo scopo di togliere le proprietà di errore se l'utente spunta la casella
+checkElement.addEventListener('change', function (event) {
+    if (event.currentTarget.checked) {
+        warningCheckText.classList.add('d-none');
+        checkElement.style.boxShadow = "none";
+    }
+})
 
 //dichiarazione funzione per il calcolo del prezzo finale
 function calculatePrice() {
