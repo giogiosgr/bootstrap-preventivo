@@ -37,7 +37,7 @@ let fullPrice = 0;
 let intPrice = 0;
 let decimalPrice = 0;
 
-//dichiarazione oggetto con i lavori possibili e relativi prezzi
+//dichiarazione arrai di oggetti di tipo lavoro, con i lavori possibili e relativi prezzi
 const jobsCollection = [
     {
         type: "Sviluppo Backend",
