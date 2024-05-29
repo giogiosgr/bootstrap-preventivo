@@ -38,14 +38,23 @@ let intPrice = 0;
 let decimalPrice = 0;
 
 //dichiarazione oggetto con i lavori possibili e relativi prezzi
-const jobsObj = {
-    "Sviluppo Backend": 20.50,
-    "Sviluppo Frontend": 15.30,
-    "Analisi Progettuale": 33.60
-};
+const jobsCollection = [
+    {
+        type: "Sviluppo Backend",
+        price: 20.50
+    },
+    {
+        type: "Sviluppo Frontend",
+        price: 15.30
+    },
+    {
+        type: "Analisi Progettuale",
+        price: 33.60
+    }
+];
 
 //viene richiamata la funzione per il popolamento, passando l'oggetto con i lavori
-addOptions(jobsObj);
+addOptions(jobsCollection);
 
 //aggiunta evento al submit del form con funzione che richiamerà il prezzo del calcolo
 form.addEventListener("submit", function (event) {
@@ -81,11 +90,11 @@ checkElement.addEventListener('change', function (event) {
 
 //dichiarazione funzione per il calcolo del prezzo finale
 function calculatePrice() {
-    //si estrae il valore corrispondente al lavoro scelto dal select
-    selectedJob = selectInput.value;
+    //si estrae il valore corrispondente al lavoro scelto dal select, sottratto uno per usarlo poi come indice
+    selectedJob = selectInput.value - 1;
 
-    //il valore di selectedJob è la chiave usata per assegnare il valore corrente alla variabile dedicata
-    currentHourPrice = jobsObj[selectedJob];
+    //il valore di selectedJob è l'indice usato per recuperare l'oggetto del lavoro e il prezzo relativo
+    currentHourPrice = jobsCollection[selectedJob].price;
 
     //calcolo del prezzo finale
     fullPrice = currentHourPrice * jobHours;
@@ -130,13 +139,13 @@ function calculatePrice() {
 };
 
 //dichiarazione funzione per il popolamento dell'elemento select del DOM
-function addOptions(obj) {
+function addOptions(jobs) {
     //variabile stringa che conterrà il codice HTML man mano aggiunto
     let htmlString = "";
-    //iterazione per ogni elemento dell'array, formato dalle chiavi dell'oggetto passato come parametro alla funzione
-    Object.keys(obj).forEach(function (elem) {
-        //alla stringa codice viene aggiunta una option con classe e testo
-        htmlString += `<option value="${elem}">${elem}</option>`;
+    //iterazione per ogni elemento dell'array parametro, contenente gli oggetti di tipo job
+    jobs.forEach(function (elem, index) {
+        //alla stringa codice viene aggiunta una option con valore e testo di riferimento
+        htmlString += `<option value="${index + 1}">${elem.type}</option>`;
     });
     //all'elemento select viene aggiunta la stringa con le option, prima del tag di chiusura
     selectInput.insertAdjacentHTML("beforeend", htmlString);
