@@ -53,7 +53,7 @@ const jobsCollection = [
     }
 ];
 
-//viene richiamata la funzione per il popolamento, passando l'oggetto con i lavori
+//viene richiamata la funzione per il popolamento, passando l'array con gli oggetti
 addOptions(jobsCollection);
 
 //aggiunta evento al submit del form con funzione che richiamerà il prezzo del calcolo
